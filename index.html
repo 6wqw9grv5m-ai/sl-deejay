@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LAMBRIQ | Sergei Lambrianidi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #060606;
+      --bg-soft: #0e1114;
+      --surface: rgba(255, 255, 255, 0.05);
+      --surface-strong: rgba(255, 255, 255, 0.09);
+      --text: #f5efe8;
+      --muted: #b7b0a6;
+      --line: rgba(255, 255, 255, 0.11);
+      --accent: #ff6a1a;
+      --accent-2: #64e6ff;
+      --accent-3: #fff4df;
+      --shadow: 0 28px 90px rgba(0, 0, 0, 0.38);
+      --radius: 24px;
+      --content: min(1180px, calc(100% - 40px));
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      color: var(--text);
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0.5)),
+        #050505;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 92%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .site {
+      position: relative;
+      z-index: 1;
+    }
+
+    .topbar {
+      width: var(--content);
+      margin: 0 auto;
+      padding: 22px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 168px;
+      padding: 10px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.52);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: auto;
+    }
+
+    .brand-copy {
+      display: grid;
+      gap: 4px;
+    }
+
+    .brand-copy strong {
+      font-size: 0.92rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .brand-copy span {
+      color: var(--muted);
+      font-size: 0.84rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .contact-chip {
+      min-height: 52px;
+      padding: 0 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(0, 0, 0, 0.48);
+      backdrop-filter: blur(14px);
+      text-decoration: none;
+      font-size: 0.96rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding-bottom: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.42) 48%, rgba(0, 0, 0, 0.68) 100%),
+        linear-gradient(180deg, rgba(8, 8, 8, 0.2), rgba(8, 8, 8, 0.74)),
+        url("photos/632429.jpg") center 24% / cover no-repeat;
+      transform: scale(1.03);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 180px;
+      background: linear-gradient(180deg, transparent, #070707 88%);
+    }
+
+    .hero-inner {
+      width: var(--content);
+      margin: 0 auto;
+      padding: 34px 0 0;
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 0.96fr) minmax(280px, 0.72fr);
+      gap: 30px;
+      align-items: end;
+      min-height: calc(100vh - 96px);
+    }
+
+    .hero-copy {
+      padding: 40px 0 34px;
+      max-width: 640px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(0, 0, 0, 0.46);
+      backdrop-filter: blur(10px);
+      color: var(--accent-2);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 18px rgba(255, 106, 26, 0.7);
+    }
+
+    h1 {
+      margin: 18px 0 0;
+      font-family: "Syne", sans-serif;
+      font-size: clamp(2.9rem, 5.8vw, 5.3rem);
+      line-height: 0.92;
+      letter-spacing: -0.025em;
+      text-transform: uppercase;
+      max-width: 9ch;
+      text-wrap: balance;
+    }
+
+    .hero-subtitle {
+      margin: 18px 0 0;
+      max-width: 35rem;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--accent-3);
+    }
+
+    .hero-subtitle strong {
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .button {
+      min-height: 58px;
+      padding: 0 24px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: linear-gradient(120deg, var(--accent), #ffaf45);
+      color: #fff;
+      box-shadow: 0 18px 40px rgba(255, 106, 26, 0.3);
+    }
+
+    .button-secondary {
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(0, 0, 0, 0.42);
+      backdrop-filter: blur(10px);
+    }
+
+    .button svg {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 18px;
+    }
+
+    .hero-note {
+      margin-top: 20px;
+      color: rgba(255, 255, 255, 0.74);
+      font-size: 0.88rem;
+      line-height: 1.65;
+      max-width: 32rem;
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 16px;
+      align-self: end;
+      padding-bottom: 16px;
+      min-width: 0;
+    }
+
+    .stat-panel,
+    .photo-card {
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(0, 0, 0, 0.42);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+    }
+
+    .stat-panel {
+      padding: 22px;
+      border-radius: 28px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .stat-item {
+      display: grid;
+      gap: 6px;
+    }
+
+    .stat-item strong {
+      font-family: "Syne", sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-item span {
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.5;
+    }
+
+    .photo-card {
+      border-radius: 30px;
+      overflow: hidden;
+    }
+
+    .photo-card img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .section {
+      width: var(--content);
+      margin: 0 auto;
+      padding: 88px 0;
+    }
+
+    .section-head {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      color: var(--accent-2);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .section-title {
+      margin: 0;
+      font-family: "Syne", sans-serif;
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 0.94;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      max-width: 14ch;
+    }
+
+    .section-copy {
+      margin: 0;
+      max-width: 52rem;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .bio-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .bio-text,
+    .bio-visual {
+      border-radius: 30px;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bio-text {
+      padding: 34px;
+      background:
+        linear-gradient(135deg, rgba(255, 106, 26, 0.06), transparent 40%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
+        rgba(12, 14, 16, 0.92);
+    }
+
+    .bio-text::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 22px;
+      pointer-events: none;
+    }
+
+    .bio-label {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--accent-3);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .bio-text h3 {
+      margin: 18px 0 16px;
+      font-family: "Syne", sans-serif;
+      font-size: clamp(2rem, 3.3vw, 3.1rem);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      max-width: 12ch;
+    }
+
+    .bio-text p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .bio-intro {
+      margin-bottom: 20px;
+    }
+
+    .bio-groups {
+      display: grid;
+      gap: 14px;
+      margin: 0 0 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .bio-group {
+      padding: 16px 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      display: grid;
+      gap: 10px;
+    }
+
+    .bio-group strong {
+      color: #fff;
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .bio-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .bio-tag {
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+      display: inline-flex;
+      align-items: center;
+      color: var(--accent-3);
+      font-size: 0.84rem;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .bio-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .bio-point {
+      min-height: 108px;
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      display: grid;
+      gap: 8px;
+      align-content: start;
+    }
+
+    .bio-point strong {
+      font-size: 0.84rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .bio-point span {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    .bio-visual {
+      min-height: 100%;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.56)),
+        url("photos/639414.jpg") center center / cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .bio-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(100, 230, 255, 0.3), transparent 36%),
+        linear-gradient(180deg, transparent 26%, rgba(4, 4, 4, 0.82));
+    }
+
+    .bio-logo {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      padding: 32px;
+      display: grid;
+      gap: 16px;
+      align-content: end;
+    }
+
+    .bio-logo img {
+      width: min(100%, 380px);
+      background: rgba(0, 0, 0, 0.52);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 20px 22px;
+    }
+
+    .bio-logo p {
+      margin: 0;
+      max-width: 24rem;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.75;
+    }
+
+    .promo-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
+        rgba(12, 14, 16, 0.92);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 22px;
+      pointer-events: none;
+    }
+
+    .panel h3 {
+      margin: 0 0 8px;
+      font-family: "Syne", sans-serif;
+      font-size: 1.55rem;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    .panel p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    .video-frame {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.72);
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+
+    .video-frame {
+      aspect-ratio: 16 / 9;
+      border-radius: 22px;
+    }
+
+    .promo-side {
+      display: grid;
+      gap: 24px;
+    }
+
+    .photo-stack {
+      display: grid;
+      gap: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .photo-stack img {
+      width: 100%;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      object-fit: cover;
+    }
+
+    .photo-stack img:first-child {
+      aspect-ratio: 4 / 3;
+    }
+
+    .photo-stack img:last-child {
+      aspect-ratio: 16 / 10;
+    }
+
+    .audio-layout {
+      position: relative;
+      z-index: 1;
+    }
+
+    .audio-player-card {
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+        rgba(8, 10, 12, 0.92);
+      overflow: hidden;
+    }
+
+    .audio-player-card {
+      padding: 22px;
+      display: grid;
+      gap: 22px;
+    }
+
+    .player-top {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: 22px;
+      align-items: center;
+    }
+
+    .player-cover {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 20px;
+      object-fit: cover;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: var(--shadow);
+    }
+
+    .player-copy {
+      display: grid;
+      gap: 10px;
+    }
+
+    .player-kicker {
+      color: var(--accent-2);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+
+    .player-title {
+      margin: 0;
+      font-family: "Syne", sans-serif;
+      font-size: 1.8rem;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .player-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.7;
+    }
+
+    .audio-controls {
+      display: grid;
+      gap: 18px;
+    }
+
+    .control-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .play-button {
+      min-width: 148px;
+      min-height: 54px;
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(120deg, var(--accent), #ffaf45);
+      color: #fff;
+      font: inherit;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 18px 40px rgba(255, 106, 26, 0.24);
+    }
+
+    .time-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-3);
+      font-size: 0.92rem;
+      letter-spacing: 0.06em;
+    }
+
+    .progress-wrap {
+      display: grid;
+      gap: 8px;
+    }
+
+    .progress {
+      width: 100%;
+      appearance: none;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .progress::-webkit-slider-thumb {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      border: 2px solid #071013;
+      box-shadow: 0 0 0 4px rgba(100, 230, 255, 0.16);
+    }
+
+    .progress::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      border: 2px solid #071013;
+      box-shadow: 0 0 0 4px rgba(100, 230, 255, 0.16);
+    }
+
+    .player-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .player-tag {
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    .audio-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .audio-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+      max-width: 32rem;
+    }
+
+    .panel-link {
+      display: inline-flex;
+      position: relative;
+      z-index: 1;
+      margin-top: 16px;
+      color: var(--accent-3);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+      padding-bottom: 2px;
+    }
+
+    .booking {
+      padding-top: 24px;
+      padding-bottom: 100px;
+    }
+
+    .booking-band {
+      border-radius: 34px;
+      padding: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background:
+        linear-gradient(120deg, rgba(255, 106, 26, 0.12), rgba(100, 230, 255, 0.08)),
+        rgba(13, 15, 17, 0.92);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .booking-band h3 {
+      margin: 0 0 12px;
+      font-family: "Syne", sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 0.96;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      max-width: 15ch;
+    }
+
+    .booking-band p {
+      margin: 0;
+      max-width: 40rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .booking-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 14px;
+    }
+
+    .footer {
+      width: var(--content);
+      margin: 0 auto;
+      padding: 0 0 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 0.86rem;
+    }
+
+    @media (max-width: 1040px) {
+      .hero-inner,
+      .bio-layout,
+      .promo-grid,
+      .booking-band {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        max-width: 100%;
+      }
+
+      .hero-subtitle,
+      .hero-note {
+        max-width: 100%;
+      }
+
+      .hero-side {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+      }
+
+      .booking-actions {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --content: min(100% - 28px, 100%);
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .brand {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .brand-mark {
+        width: 150px;
+      }
+
+      .hero-copy {
+        padding-top: 16px;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 13vw, 4rem);
+        max-width: 8ch;
+      }
+
+      .hero-subtitle {
+        font-size: 0.95rem;
+        line-height: 1.65;
+      }
+
+      .hero-actions,
+      .booking-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .button,
+      .contact-chip {
+        width: 100%;
+      }
+
+      .hero-side {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-panel,
+      .panel,
+      .bio-text,
+      .booking-band {
+        padding: 20px;
+      }
+
+      .bio-points {
+        grid-template-columns: 1fr;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .player-top {
+        grid-template-columns: 1fr;
+      }
+
+      .audio-bottom {
+        align-items: stretch;
+      }
+
+      .play-button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header class="hero">
+      <div class="topbar">
+        <a class="brand" href="#top" aria-label="LAMBRIQ и Sergei Lambrianidi">
+          <div class="brand-mark">
+            <img src="brand/lambriq-logo.png" alt="LAMBRIQ">
+          </div>
+          <div class="brand-copy">
+            <strong>Sergei Lambrianidi</strong>
+            <span>DJ / LAMBRIQ Project</span>
+          </div>
+        </a>
+        <a class="contact-chip" href="tel:+7996130100">+7 996 130 10 00</a>
+      </div>
+
+      <div class="hero-inner" id="top">
+        <div class="hero-copy">
+          <div class="eyebrow">Club Energy / Private Events / Weddings</div>
+          <h1>Lambriq by Sergei Lambrianidi</h1>
+          <p class="hero-subtitle">
+            <strong>Авторский DJ-проект для событий, где нужна не просто музыка, а настроение, динамика и сильная атмосфера.</strong>
+            От welcome-зоны до пикового танцпола сет выстраивается так, чтобы гости оставались вовлеченными, а вечер звучал цельно, современно и красиво.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="tel:+7996130100" aria-label="Связаться по номеру +7996130100">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6.6 10.8c1.8 3.5 4.1 5.8 7.6 7.6l2.5-2.5c.3-.3.8-.4 1.2-.3 1 .3 2 .5 3.1.5.7 0 1.2.5 1.2 1.2V21c0 .7-.5 1.2-1.2 1.2C10.6 22.2 1.8 13.4 1.8 2.6 1.8 1.9 2.3 1.4 3 1.4h3.8c.7 0 1.2.5 1.2 1.2 0 1.1.2 2.1.5 3.1.1.4 0 .9-.3 1.2l-1.6 1.9Z" fill="currentColor"/>
+              </svg>
+              Связаться
+            </a>
+            <a class="button button-secondary" href="#promo">Смотреть промо</a>
+          </div>
+          <p class="hero-note">
+            Форматы: частные вечеринки, клубные сеты, свадьбы, городские события и брендовое сопровождение.
+            Быстрая связь для бронирования даты и обсуждения формата: <strong>+7 996 130 10 00</strong>.
+          </p>
+        </div>
+
+        <div class="hero-side">
+          <div class="stat-panel" aria-label="Преимущества проекта">
+            <div class="stat-item">
+              <strong>Живой танцпол</strong>
+              <span>Сет строится под настроение площадки и удерживает внимание гостей весь вечер.</span>
+            </div>
+            <div class="stat-item">
+              <strong>Современный звук</strong>
+              <span>Актуальная подача, клубная энергия и музыкальная драматургия без случайных пауз.</span>
+            </div>
+            <div class="stat-item">
+              <strong>Эстетика бренда</strong>
+              <span>LAMBRIQ работает как полноценный визуально-музыкальный образ, а не просто точка за пультом.</span>
+            </div>
+          </div>
+          <div class="photo-card">
+            <img src="photos/639414.jpg" alt="Sergei Lambrianidi во время вечернего DJ-сета">
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section" id="bio">
+        <div class="section-head">
+          <div class="section-kicker">Bio</div>
+          <h2 class="section-title">LAMBRIQ (ЛАМБРИКЬЮ)</h2>
+        </div>
+
+        <div class="bio-layout">
+          <article class="bio-text">
+            <div class="bio-label">БИО</div>
+            <h3>LAMBRIQ — авторский DJ-проект Sergei Lambrianidi</h3>
+            <p class="bio-intro">
+              Сергей Ламбрианиди — участник мировых фестивалей, корпоративных событий и больших городских сцен.
+              Его отличают неординарная подача, динамичные мэшапы и уверенная работа с любой аудиторией.
+            </p>
+            <div class="bio-groups">
+              <div class="bio-group">
+                <strong>Фестивали и награды</strong>
+                <div class="bio-tags">
+                  <span class="bio-tag">Лига Диджеев 2024</span>
+                  <span class="bio-tag">Movida Corona International 2013</span>
+                  <span class="bio-tag">Sochi Music Weekend 2017</span>
+                  <span class="bio-tag">Призёр Adrenaline Rush FMX</span>
+                </div>
+              </div>
+              <div class="bio-group">
+                <strong>Компании и бренды</strong>
+                <div class="bio-tags">
+                  <span class="bio-tag">МТС</span>
+                  <span class="bio-tag">ЭТМ</span>
+                  <span class="bio-tag">Лукойл</span>
+                  <span class="bio-tag">Газпром</span>
+                  <span class="bio-tag">СургутНефтегаз</span>
+                  <span class="bio-tag">LOTI</span>
+                </div>
+              </div>
+              <div class="bio-group">
+                <strong>Главные сцены</strong>
+                <div class="bio-tags">
+                  <span class="bio-tag">Муром</span>
+                  <span class="bio-tag">Ялта</span>
+                  <span class="bio-tag">Екатеринбург</span>
+                  <span class="bio-tag">Когалым</span>
+                </div>
+              </div>
+            </div>
+            <div class="bio-points">
+              <div class="bio-point">
+                <strong>Private</strong>
+                <span>Частные события с вниманием к атмосфере и вкусу аудитории.</span>
+              </div>
+              <div class="bio-point">
+                <strong>Club</strong>
+                <span>Энергичная подача и уверенное управление танцполом.</span>
+              </div>
+              <div class="bio-point">
+                <strong>Brand</strong>
+                <span>Музыкальное оформление, которое усиливает стиль площадки и события.</span>
+              </div>
+            </div>
+          </article>
+
+          <div class="bio-visual" aria-label="LAMBRIQ визуальный стиль">
+            <div class="bio-logo">
+              <img src="brand/lambriq-logo.png" alt="Логотип проекта LAMBRIQ">
+              <p>
+                Клубный проект с опытом более 10 лет по России.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="promo">
+        <div class="section-head">
+          <div class="section-kicker">Promo</div>
+          <h2 class="section-title">Видео, фото и аудио для заказчиков</h2>
+        </div>
+
+        <div class="promo-grid">
+          <article class="panel">
+            <h3>Видео</h3>
+            <iframe
+              class="video-frame"
+              src="https://vkvideo.ru/video_ext.php?oid=145249833&id=456240020&hash=c7b2cfb019a8b5ce&hd=4"
+              title="VK Видео Sergei Lambrianidi"
+              allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
+              frameborder="0"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
+            <a class="panel-link" href="https://vkvideo.ru/video_ext.php?oid=145249833&id=456240020&hash=c7b2cfb019a8b5ce&hd=4" target="_blank" rel="noreferrer">Открыть видео в отдельном окне</a>
+          </article>
+
+          <article class="panel">
+            <h3>Фото</h3>
+            <div class="photo-stack">
+              <img src="photos/632429.jpg" alt="Sergei Lambrianidi за DJ-пультом на выступлении">
+              <img src="photos/639414.jpg" alt="Sergei Lambrianidi во время клубного выступления">
+            </div>
+          </article>
+
+          <article class="panel">
+            <h3>Аудио</h3>
+            <div class="audio-layout">
+              <div class="audio-player-card">
+                <div class="player-top">
+                  <img class="player-cover" src="photos/632429.jpg" alt="Обложка промо-микса Lambriq Afro Mix">
+                  <div class="player-copy">
+                    <div class="player-kicker">Promo Audio</div>
+                    <h4 class="player-title">Lambriq Afro Mix</h4>
+                    <p>Актуальный промо-микс для быстрого знакомства с музыкальной подачей, грувом и атмосферой проекта.</p>
+                  </div>
+                </div>
+                <div class="audio-controls" data-audio-player>
+                  <audio preload="metadata" src="audio/lambriq-afro-mix.mp3"></audio>
+                  <div class="control-row">
+                    <button class="play-button" type="button" data-audio-toggle>Play Mix</button>
+                    <div class="time-box">
+                      <span data-audio-current>00:00</span>
+                      <span>/</span>
+                      <span data-audio-duration>00:00</span>
+                    </div>
+                  </div>
+                  <div class="progress-wrap">
+                    <input class="progress" type="range" min="0" max="100" step="0.1" value="0" data-audio-progress aria-label="Прогресс воспроизведения">
+                  </div>
+                  <div class="player-tags">
+                    <span class="player-tag">Afro House</span>
+                    <span class="player-tag">Club Mood</span>
+                    <span class="player-tag">Direct MP3</span>
+                  </div>
+                </div>
+                <div class="audio-bottom">
+                  <p class="audio-note">Отдельный технический райдер доступен на собственной странице для отправки организаторам и площадкам.</p>
+                  <a class="button button-secondary" href="rider.html">Открыть райдер</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section booking">
+        <div class="booking-band">
+          <div>
+            <h3>Закажите DJ-сопровождение под формат вашего события</h3>
+            <p>
+              Если тебе нужен не просто исполнитель, а музыкальный образ с сильной атмосферой и продуманной динамикой вечера,
+              свяжись напрямую и обсуди дату, площадку и формат события.
+            </p>
+          </div>
+          <div class="booking-actions">
+            <a class="button button-primary" href="tel:+7996130100">Позвонить сейчас</a>
+            <a class="button button-secondary" href="#bio">Смотреть БИО</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>LAMBRIQ / Sergei Lambrianidi</span>
+      <span>Прямая связь: +7 996 130 10 00</span>
+    </footer>
+  </div>
+  <script>
+    function formatTime(seconds) {
+      if (!Number.isFinite(seconds)) return "00:00";
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+    }
+
+    document.querySelectorAll("[data-audio-player]").forEach((player) => {
+      const audio = player.querySelector("audio");
+      const toggle = player.querySelector("[data-audio-toggle]");
+      const progress = player.querySelector("[data-audio-progress]");
+      const current = player.querySelector("[data-audio-current]");
+      const duration = player.querySelector("[data-audio-duration]");
+
+      const syncButton = () => {
+        toggle.textContent = audio.paused ? "Play Mix" : "Pause";
+      };
+
+      audio.addEventListener("loadedmetadata", () => {
+        duration.textContent = formatTime(audio.duration);
+      });
+
+      audio.addEventListener("timeupdate", () => {
+        current.textContent = formatTime(audio.currentTime);
+        if (audio.duration) {
+          progress.value = (audio.currentTime / audio.duration) * 100;
+        }
+      });
+
+      audio.addEventListener("ended", () => {
+        syncButton();
+        progress.value = 0;
+      });
+
+      toggle.addEventListener("click", () => {
+        if (audio.paused) {
+          audio.play();
+        } else {
+          audio.pause();
+        }
+        syncButton();
+      });
+
+      progress.addEventListener("input", () => {
+        if (audio.duration) {
+          audio.currentTime = (progress.value / 100) * audio.duration;
+        }
+      });
+
+      audio.addEventListener("pause", syncButton);
+      audio.addEventListener("play", syncButton);
+      syncButton();
+    });
+  </script>
+</body>
+</html>
